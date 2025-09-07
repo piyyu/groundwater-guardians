@@ -63,9 +63,16 @@ const ModernLandingPage = () => {
     }, []);
 
     const navigateToDashboard = () => {
-        navigate('/dashboard');
-        console.log('Navigating to dashboard...');
+        const user = localStorage.getItem("user");
+        if (user) {
+            navigate("/dashboard");
+            console.log("Navigating to dashboard...");
+        } else {
+            navigate("/login");
+            console.log("Not logged in. Redirecting to login...");
+        }
     };
+
 
     return (
         <div className="font-sans bg-black text-white overflow-hidden">

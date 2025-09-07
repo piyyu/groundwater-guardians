@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Droplets, Users, FileBarChart } from 'lucide-react';
+import { Droplets, Users, FileBarChart, LogOut } from 'lucide-react';
 import { PolicyMakerDashboard } from './dashboards/PolicyMakerDashboard';
 import { ResearcherDashboard } from './dashboards/ResearcherDashboard';
 import { CommunityLeaderDashboard } from './dashboards/CommunityLeaderDashboard';
@@ -11,30 +12,49 @@ import { getStatistics } from '@/data/mockData';
 export const DashboardLayout = () => {
   const [activeTab, setActiveTab] = useState('policy');
   const stats = getStatistics();
+  const navigate = useNavigate();
+
+  const user = localStorage.getItem("user");
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-surface">
       {/* Header */}
       <header className="bg-card shadow-card border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-water rounded-lg">
-                <Droplets className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">
-                  Groundwater Guardians
-                </h1>
-                <p className="text-muted-foreground">India DWLR Network Monitoring</p>
-              </div>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-water rounded-lg">
+              <Droplets className="h-6 w-6 text-primary-foreground" />
             </div>
-            <div className="flex items-center space-x-4">
-              <Badge variant="secondary" className="animate-pulse-glow">
-                {stats.onlineStations.toLocaleString()} Stations Online
-              </Badge>
-              <div className="h-2 w-2 bg-status-good rounded-full animate-pulse"></div>
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">
+                Groundwater Guardians
+              </h1>
+              <p className="text-muted-foreground">India DWLR Network Monitoring</p>
             </div>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <Badge variant="secondary" className="animate-pulse-glow">
+              {stats.onlineStations.toLocaleString()} Stations Online
+            </Badge>
+            <div className="h-2 w-2 bg-status-good rounded-full animate-pulse"></div>
+
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-1 px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow-md transition-all duration-300"
+            >
+              <span>Logout</span>
+            </button>
           </div>
         </div>
       </header>
