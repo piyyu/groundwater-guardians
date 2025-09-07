@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Groundwater Management Design System - Water-themed colors and tokens */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
+
+    /* Card and surface colors */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    /* Primary - Water blue theme */
+    --primary: 213 94% 68%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 213 94% 60%;
+    --primary-glow: 213 94% 80%;
+
+    /* Secondary - Light water blue */
+    --secondary: 210 100% 97%;
+    --secondary-foreground: 213 94% 68%;
+
+    /* Status colors for water levels */
+    --status-good: 142 76% 36%;
+    --status-good-foreground: 0 0% 100%;
+    --status-moderate: 48 96% 53%;
+    --status-moderate-foreground: 26 83% 14%;
+    --status-critical: 0 84% 60%;
+    --status-critical-foreground: 0 0% 100%;
+
+    /* Muted colors */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent - Complementary teal */
+    --accent: 175 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 94% 68%;
+
+    /* Water-themed gradients */
+    --gradient-water: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-depth: linear-gradient(180deg, hsl(213 94% 68%), hsl(213 94% 45%));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(210 20% 95%));
+
+    /* Shadows */
+    --shadow-water: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-status: 0 4px 12px -4px hsl(var(--primary) / 0.2);
+    --shadow-card: 0 2px 8px -2px hsl(215 25% 27% / 0.1);
+
+    /* Animation and transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Specific to water management */
+    --well-depth: 180deg;
+    --water-flow: 0 0 20px hsl(var(--primary) / 0.5);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark theme for water management */
+    --background: 215 28% 17%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 28% 20%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 28% 20%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 213 94% 68%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 213 94% 75%;
+    --primary-glow: 213 94% 80%;
+
+    --secondary: 215 28% 25%;
+    --secondary-foreground: 210 20% 98%;
+
+    /* Status colors remain consistent */
+    --status-good: 142 76% 36%;
+    --status-good-foreground: 0 0% 100%;
+    --status-moderate: 48 96% 53%;
+    --status-moderate-foreground: 26 83% 14%;
+    --status-critical: 0 84% 60%;
+    --status-critical-foreground: 0 0% 100%;
+
+    --muted: 215 28% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 175 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 28% 25%;
+    --input: 215 28% 25%;
+    --ring: 213 94% 68%;
+
+    /* Dark theme gradients */
+    --gradient-water: linear-gradient(135deg, hsl(213 94% 68%), hsl(213 94% 45%));
+    --gradient-depth: linear-gradient(180deg, hsl(213 94% 68%), hsl(213 94% 35%));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(215 28% 12%));
+
+    --shadow-water: 0 10px 30px -10px hsl(var(--primary) / 0.4);
+    --shadow-status: 0 4px 12px -4px hsl(var(--primary) / 0.3);
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Leaflet map styles */
+  .leaflet-container {
+    @apply bg-background;
+  }
+  
+  .leaflet-popup-content-wrapper {
+    @apply bg-card text-card-foreground rounded-lg shadow-card;
+  }
+  
+  .leaflet-popup-tip {
+    @apply bg-card;
+  }
+}
